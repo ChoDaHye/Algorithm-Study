@@ -1,0 +1,33 @@
+// 백준 10610 
+
+// Scanner 클래스를 사용하여 사용자로부터 입력을 받는다.
+Scanner scan = new Scanner(System.in);
+
+// 문자열 형태로 숫자를 입력받는다.
+String k = scan.next();
+
+// 입력받은 숫자의 각 자릿수를 저장할 배열을 생성한다.
+int arrInt[] = new int[k.length()];
+
+// 배열에 저장된 모든 자릿수의 합계를 저장할 변수를 초기화한다.
+int arrTotalCount = 0;
+
+// 입력받은 숫자의 각 자릿수를 배열에 저장하고, 합계를 계산한다.
+for (int i = 0; i < k.length(); i++) {
+    arrInt[i] = k.charAt(i) - 48; // ASCII 코드에서 숫자로 변환
+    arrTotalCount += arrInt[i];
+}
+
+// 배열을 오름차순으로 정렬한다. Arrays.sort의 시간 복잡도는 O(n log n)이다.
+Arrays.sort(arrInt);
+
+// 합계가 3의 배수이고, 가장 작은 자릿수(0의 존재 여부)를 확인한다.
+if ((arrTotalCount % 3 == 0)&&(arrInt[0]==0)) {
+    // 배열을 역순으로 출력하여 가장 큰 수를 만든다.
+    for(int i = k.length()-1; i > -1; i--) {
+        System.out.print(arrInt[i]);
+    }
+} else {
+    // 조건을 만족하지 않으면 -1을 출력한다.
+    System.out.println(-1);
+}
